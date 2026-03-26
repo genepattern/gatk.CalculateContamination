@@ -1,7 +1,7 @@
 # GenePattern Module Manifest
 
 LSID=urn:lsid:broad.mit.edu:cancer.software.genepattern.module.generated:93475:1
-name=GATK.CalculateContamination
+name=gatk.CalculateContamination
 version=1
 author=GenePattern Team
 description=Given pileup data from GetPileupSummaries, calculates the fraction of reads coming from cross-sample contamination. Supports both tumor-only mode and matched normal mode. Part of the GATK4 Somatic Short Variant Discovery Best Practices pipeline (Broad Institute). The contamination table output is consumed by FilterMutectCalls to remove contamination artifacts from somatic variant calls.
@@ -20,6 +20,8 @@ job.memory=4 Gb
 job.walltime=02:00:00
 job.docker.image=broadinstitute/gatk\:4.1.4.1
 src.repo=https://github.com/broadinstitute/gatk
+documentationUrl=https://github.com/genepattern/gatk.CalculateContamination/blob/main/report-documentation.md
+
 
 # Parameters
 p1_MODE=IN

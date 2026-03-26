@@ -97,6 +97,7 @@ The output contamination table (and optionally the tumor segmentation table) sho
 Input:
 - Example tumor pileup table: [GATK GetPileupSummaries example data (TCGA-OR-A5J1)](https://console.cloud.google.com/storage/browser/gatk-test-data/mutect/dream_synthetic_bams)
 - GATK tutorial data: [https://github.com/broadinstitute/gatk/tree/master/src/test/resources/large](https://github.com/broadinstitute/gatk/tree/master/src/test/resources/large)
+- GenePattern module test data: [https://github.com/genepattern/gatk.CalculateContamination/tree/main/gpunit/data](https://github.com/genepattern/gatk.CalculateContamination/tree/main/gpunit/data)
 
 Output:
 - Example contamination table output: A `.table` file with sample contamination estimated at approximately 0.0–0.03 for typical high-quality tumor samples.
@@ -104,8 +105,7 @@ Output:
 
 ## Requirements
 
-- **Docker Image**: `broadinstitute/gatk:latest` (or a pinned version such as `broadinstitute/gatk:4.4.0.0`)
-  - GATK 4.x is required; this module has been tested with GATK 4.3.x and 4.4.x.
+- **Docker Image**: broadinstitute/gatk:4.1.4.0
 - **Python**: Python 3.6+ (used by the GenePattern wrapper script).
 - **Operating System**: Linux (via Docker container); macOS and Windows are supported through the Docker runtime.
 - **Memory**: Minimum 4 GB RAM recommended; 8+ GB for large whole-genome sequencing (WGS) pileup files.
