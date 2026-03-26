@@ -1,0 +1,66 @@
+# GenePattern Module Manifest
+
+LSID=urn:lsid:broad.mit.edu:cancer.software.genepattern.module.generated:93475:1
+name=GATK.CalculateContamination
+version=1
+author=GenePattern Team
+description=Given pileup data from GetPileupSummaries, calculates the fraction of reads coming from cross-sample contamination. Supports both tumor-only mode and matched normal mode. Part of the GATK4 Somatic Short Variant Discovery Best Practices pipeline (Broad Institute). The contamination table output is consumed by FilterMutectCalls to remove contamination artifacts from somatic variant calls.
+categories=Variant Analysis;Somatic Mutation;Quality Control
+commandLine=python <libdir>gatk_calculate_contamination_wrapper.py --tumor.pileup.input <tumor.pileup.input> --output <output> <matched.normal.input> <tumor.segmentation.output> <arguments.file>
+cpuType=any
+os=any
+language=Python
+fileFormat=table;tsv;txt
+taskType=Variant Analysis
+taskDoc=README.md
+quality=development
+privacy=public
+job.cpuCount=1
+job.memory=4 Gb
+job.walltime=02:00:00
+job.docker.image=broadinstitute/gatk\:4.1.4.1
+src.repo=https://github.com/broadinstitute/gatk
+
+# Parameters
+p1_MODE=IN
+p1_TYPE=FILE
+p1_description=Tumor pileup summary table (.table) produced by GATK GetPileupSummaries. Tab-delimited file with columns: contig, position, ref_count, alt_count, allele_frequency, other_alt_count. This is the primary required input for contamination estimation. GATK flag: -I / --input.
+p1_fileFormat=table;tsv;txt
+p1_name=tumor.pileup.input
+p1_numValues=1..1
+p1_optional=
+p1_type=java.io.File
+p2_TYPE=TEXT
+p2_default_value=contamination.table
+p2_description=Name of the output contamination table file. The output is a tab-delimited .table file with columns: sample, contamination, error. The contamination value is a fraction between 0 and 1. This file is consumed by FilterMutectCalls via --contamination-table. GATK flag: -O / --output.
+p2_name=output
+p2_numValues=1..1
+p2_optional=
+p2_type=java.lang.String
+p3_MODE=IN
+p3_TYPE=FILE
+p3_description=Matched normal pileup summary table (.table) from GetPileupSummaries run on the paired normal sample. When provided, enables MATCHED NORMAL MODE for more accurate contamination estimation. When omitted, TUMOR-ONLY MODE is used. Matched normal mode is strongly preferred when a paired normal is available. GATK flag: -matched / --matched-normal-input.
+p3_fileFormat=table;tsv;txt
+p3_name=matched.normal.input
+p3_numValues=0..1
+p3_optional=on
+p3_prefix_when_specified=--matched.normal.input 
+p3_type=java.io.File
+p4_TYPE=TEXT
+p4_description=Output filename for the tumor segmentation table. Contains minor allele fractions per genomic segment with columns: contig, start, end, minor_allele_fraction. This output is consumed by FilterMutectCalls via --tumor-segmentation. Highly recommended for aneuploid tumors to account for allelic imbalance. GATK flag: --tumor-segmentation.
+p4_name=tumor.segmentation.output
+p4_numValues=0..1
+p4_optional=on
+p4_prefix_when_specified=--tumor.segmentation.output 
+p4_type=java.lang.String
+p5_MODE=IN
+p5_TYPE=FILE
+p5_description=Text file containing additional GATK arguments, one argument per line. Use this to pass optional, common, or advanced GATK options that are not exposed as GenePattern parameters -- for example: --verbosity INFO, --TMP_DIR /tmp, --QUIET, --gcs-max-retries 30, --gatk-config-file myconfig.config, --use-jdk-deflater, --use-jdk-inflater. GATK flag: --arguments_file.
+p5_fileFormat=txt
+p5_name=arguments.file
+p5_numValues=0..1
+p5_optional=on
+p5_prefix_when_specified=--arguments.file 
+p5_type=java.io.File
+
+# Additional Properties

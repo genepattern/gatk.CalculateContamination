@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Required Parameters",
+        "description": "Required inputs and outputs for running CalculateContamination. Provide the tumor pileup summary table produced by GetPileupSummaries and specify the output contamination table filename.",
+        "parameters": [
+            "tumor.pileup.input",
+            "output"
+        ],
+        "hidden": false
+    },
+    {
+        "name": "Optional Parameters",
+        "description": "Optional inputs and outputs for enhanced contamination estimation. Provide a matched normal pileup for more accurate results (matched normal mode), specify a tumor segmentation output file for aneuploid tumors, or supply an arguments file to pass additional GATK options.",
+        "parameters": [
+            "matched.normal.input",
+            "tumor.segmentation.output",
+            "arguments.file"
+        ],
+        "hidden": false
+    }
+]

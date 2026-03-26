@@ -1,0 +1,7 @@
+name: "gatk.CalculateContamination basic tumor-only test"
+module: gatk.CalculateContamination
+params:
+  tumor.pileup.input: data/tumor_pileup_summary.table
+assertions:
+  files:
+    - contamination.table
